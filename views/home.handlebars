@@ -1,0 +1,63 @@
+<div class="col-sm-12 d-sm-none">
+    <img src={{article.post.image}} style="object-fit: cover;" class="img-fluid" alt="Responsive image">
+</div>
+<section class="offset-lg-2 col-lg-7 offset-xl-2 col-xl-7">
+    <h2>{{article.post.title}}</h2>
+    <h6>{{article.post.standfirst}}</h6>
+    <p>{{formatDate article.post.date 'dddd D MMMM YYYY HH:mm a'}}</p>
+</section>
+<section class="px-lg-5 px-md-1 row">
+    <div class="col-lg-8 col-md-12">
+        <div class="col-lg-12 d-none d-md-block">
+            <img src={{article.post.image}} style="object-fit: cover;" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class=" offset-lg-2 col-lg-10 ">
+            <p>{{{article.post.body}}}</p>
+            <div class="row px-4 justify-content-between border-top border-bottom py-4 ">
+                {{!-- <div class="col-lg-4 col-md-4"> --}}
+                    <div class="row">
+                        {{!-- <div class="row"> --}}
+                            <p> <i class="fas fa-comment-alt"></i></p>
+                            <h6 class="ml-3">5 Comments</h6>
+                        </div>
+                        {{!--
+                    </div> --}}
+                    {{!-- <div class="col-lg-3 col-md-3 ml-auto"> --}}
+                        {{!-- <div class="row justify-content-end"> --}}
+                            <div class="">
+                                <h6>Sort: <a onclick="filterLikes()">Likes</a> | <a onclick="filterTime()">Newest</a>
+                                </h6>
+                            </div>
+                            {{!--
+                        </div> --}}
+                    </div>
+
+                    {{!-- {{#each getComments()}} --}}
+
+                    <div id="comments">
+
+                    </div>
+
+                    {{!-- {{/each}} --}}
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-12">
+                <h5>More Stories</h5>
+
+                {{#each posts.posts}}
+                <div class="row px-2 justify-content-between border-top border-bottom py-3">
+                    <div class="col-3">
+                        {{!-- <div class="col-lg-3 col-md-3"> --}}
+                            <img src={{this.thumbnail}} alt="">
+                        </div>
+                        {{!-- <div class="col-lg-9 col-md-9"> --}}
+                            <div class="col-9">
+                                <h6 class="text-wrap">{{this.title}}</h6>
+                                <span class="readmore">Read More</span>
+                            </div>
+                        </div>
+
+                        {{/each}}
+
+                    </div>
+</section>

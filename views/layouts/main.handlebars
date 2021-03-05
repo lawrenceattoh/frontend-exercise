@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="static/app.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="static/app.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+		integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+		crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/dc1f6b4c29.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="getComments()">
+	{{> header }}
+	{{{ body }}}
+
+
+	<script>
+		async function getComments() {
+
+			const data = await fetch(
+				"https://my-json-server.typicode.com/telegraph/frontend-exercise/comments",
+
+			).then((response) => response.json()).then(data => { return data })
+			let list = []
+			list = data.map(comment => `         <div class="row justify-content-between border-top px-4 py-4 ">
+                            <div class="row ">
+                                <h6 class="mr-3 ">${comment.name}</h6>
+                                <small>${moment(comment.date).format('D MMM YYYY H:mm A')
+				}</small >
+                            </div >
+                            <div class="row justify-content-end">
+                                <h6 class="text-right">${comment.likes} likes</h6>
+                            </div>
+                        <div class="row  pr-5">
+                            <p>${comment.body}</p>
+                        </div>
+                    </div >`
+
+			)
+			document.getElementById("comments").innerHTML = list.join("");
+
+
+		}
+		async function filterLikes() {
+
+			const data = await fetch(
+				"https://my-json-server.typicode.com/telegraph/frontend-exercise/comments?_sort=likes&_order=desc",
+
+			).then((response) => response.json()).then(data => { return data })
+			let list = []
+			list = data.map(comment => `         <div class="row justify-content-between border-top px-4 py-4 ">
+                            <div class="row ">
+                                <h6 class="mr-3 ">${comment.name}</h6>
+                                <small>${moment(comment.date).format('D MMM YYYY H:mm A')
+				}</small >
+                            </div >
+                            <div class="row justify-content-end">
+                                <h6 class="text-right">${comment.likes} likes</h6>
+                            </div>
+                        <div class="row  pr-5">
+                            <p>${comment.body}</p>
+                        </div>
+                    </div >`
+
+			)
+			document.getElementById("comments").innerHTML = list.join("");
+
+
+		}
+		async function filterTime() {
+
+			const data = await fetch(
+				"https://my-json-server.typicode.com/telegraph/frontend-exercise/comments?_sort=date&_order=desc",
+
+			).then((response) => response.json()).then(data => { return data })
+			let list = []
+			list = data.map(comment => `         <div class="row justify-content-between border-top px-4 py-4 ">
+                            <div class="row ">
+                                <h6 class="mr-3 ">${comment.name}</h6>
+                                <small>${moment(comment.date).format('D MMM YYYY H:mm A')
+				}</small >
+                            </div >
+                            <div class="row justify-content-end">
+                                <h6 class="text-right">${comment.likes} likes</h6>
+                            </div>
+                        <div class="row  pr-5">
+                            <p>${comment.body}</p>
+                        </div>
+                    </div >`
+
+			)
+			document.getElementById("comments").innerHTML = list.join("");
+
+
+		}
+
+	</script>
+</body>
+
+</html>
